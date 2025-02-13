@@ -575,3 +575,44 @@ type BorderStyle = `${Style} ${Lowercase<Color>}`;
 
 let borderStyle: BorderStyle = "solid red";
 let borderStyle2: BorderStyle = "dashed white";
+
+// *-----------------------------Задание 11: Практика по типизации класса---+++
+
+export class Rectangle {
+  constructor(public width: number, public height: number) {}
+
+  area(): number {
+    return this.height * this.width;
+  }
+
+  protected log() {
+    console.log(`new Rectangle was create at ${new Date()}`);
+  }
+}
+
+class Square1 extends Rectangle {
+  constructor(public width: number, public color: string) {
+    super(width, width);
+  }
+
+  paint(newColor: string) {
+    this.color = newColor;
+  }
+}
+
+// *-----------------------------Задание 12: Практика по типизации класса №2---+++
+export class Temperature {
+  constructor(public celsius: number) {}
+
+  get fahrenheit() {
+    return this.celsius * 1.8 + 32;
+  }
+
+  set fahrenheit(value: number) {
+    this.celsius = (value - 32) / 1.8;
+  }
+
+  static fromFahrenheit(value: number): Temperature {
+    return new Temperature(Math.round((value - 32) / 1.8));
+  }
+}

@@ -1,6 +1,7 @@
 "use strict";
 // *------------------------------Задание 1: Базовая типизация функций---+++
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Temperature = exports.Rectangle = void 0;
 exports.gradeDeveloper = gradeDeveloper;
 exports.keys = keys;
 exports.values = values;
@@ -326,3 +327,43 @@ function example12(a, b) {
 }
 let borderStyle = "solid red";
 let borderStyle2 = "dashed white";
+// *-----------------------------Задание 11: Практика по типизации класса---+++
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+    area() {
+        return this.height * this.width;
+    }
+    log() {
+        console.log(`new Rectangle was create at ${new Date()}`);
+    }
+}
+exports.Rectangle = Rectangle;
+class Square1 extends Rectangle {
+    constructor(width, color) {
+        super(width, width);
+        this.width = width;
+        this.color = color;
+    }
+    paint(newColor) {
+        this.color = newColor;
+    }
+}
+// *-----------------------------Задание 12: Практика по типизации класса №2---+++
+class Temperature {
+    constructor(celsius) {
+        this.celsius = celsius;
+    }
+    get fahrenheit() {
+        return this.celsius * 1.8 + 32;
+    }
+    set fahrenheit(value) {
+        this.celsius = (value - 32) / 1.8;
+    }
+    static fromFahrenheit(value) {
+        return new Temperature(Math.round((value - 32) / 1.8));
+    }
+}
+exports.Temperature = Temperature;
